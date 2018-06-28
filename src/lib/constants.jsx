@@ -1,0 +1,1 @@
+export const SET_CONTEXT = 'SET_CONTEXT';
