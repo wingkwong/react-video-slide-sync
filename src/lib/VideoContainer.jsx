@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
 import JwplayerBase from "./JwplayerBase";
 import HTML5Base from "./HTML5Base";
 import YoutubeBase from "./YoutubeBase";
@@ -13,6 +14,7 @@ class VideoContainer extends Component {
 
   componentDidMount() {
   	this._initPlayer();
+    this._responsify();
   }
 
   _initPlayer() {
@@ -36,15 +38,23 @@ class VideoContainer extends Component {
     }
    }
 
+   _responsify() {
+      var { responsive } = this.props.context;
+      if(responsive){
+        //TODO
+      }
+   }
+
 
   renderBase() {
   	const { player } = this.state;
   	const { context } = this.props;
+    console.log(context);
   	return (
   		<div>
-  			{ player == 'jwplayer' && <JwplayerBase jwplayerKey={context.jwplayerKey} jwplayerSetup={context.jwplayerSetup}/> }
-  			{ player == 'html5' && <HTML5Base html5Setup={context.html5Setup}/> }
-  			{ player == 'youtube' && <YoutubeBase youtubeSetup={context.youtubeSetup}/> }
+  			{ player == 'jwplayer' && <JwplayerBase/> }
+  			{ player == 'html5' && <HTML5Base/> }
+  			{ player == 'youtube' && <YoutubeBase/> }
   		</div>
   	)
   }
@@ -52,11 +62,23 @@ class VideoContainer extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="">
+      <div className="video-container">
       	{ this.renderBase() }
       </div>
     );
   }
 }
 
-export default VideoContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    context: state.generalReducer.context
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoContainer);

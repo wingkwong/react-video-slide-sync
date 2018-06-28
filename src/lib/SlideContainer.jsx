@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
 
 class SlideContainer extends Component {
   constructor(props) {
@@ -11,11 +12,11 @@ class SlideContainer extends Component {
   }
 
   componentDidMount() {
-    const { slides } = this.props.context;
+    const { context } = this.props;
     this.setState({
-      src: slides[0].img,
-      title: slides[0].title,
-      alt: slides[0].alt
+      src: context.slides[0].img,
+      title: context.slides[0].title,
+      alt: context.slides[0].alt
     })
   }
 
@@ -23,9 +24,23 @@ class SlideContainer extends Component {
     const { context } = this.props;
     const { src, title, alt } = this.state; 
     return (
-      <img src={src} title={title} alt={alt}/>
+      <div className="slide-container">
+        <img src={src} title={title} alt={alt}/>
+      </div>
     );
   }
 }
 
-export default SlideContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    context: state.generalReducer.context
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlideContainer);
