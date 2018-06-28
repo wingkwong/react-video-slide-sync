@@ -1,8 +1,7 @@
 {
   "name": "react-video-slide-sync",
   "version": "0.0.0",
-  "description":
-    "Synchronizing slide images with videos in ReactJS",
+  "description": "Synchronizing slide images with videos in ReactJS",
   "main": "lib/index.js",
   "scripts": {
     "dev": "concurrently \"npm run lib:watch\" \"npm run docs\"",
@@ -40,5 +39,11 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:wingkwong/react-video-slide-sync.git"
+  },
+  "dependencies": {
+    "react-youtube": "^7.6.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   }
 }
