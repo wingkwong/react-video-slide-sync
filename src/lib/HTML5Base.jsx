@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
+
 
 class HTML5Base extends Component {
   constructor(props) {
@@ -13,7 +15,10 @@ class HTML5Base extends Component {
   }
 
   renderSource() {
-     var o = this.props.html5Setup;
+     var o = this.props.context.html5Setup;
+
+     if(typeof o === 'undefined') return (null);
+
      if(typeof o.sources === "object" && o.sources.length == 1){
           return (<source src={o.sources.file} type={o.sources.type}/>);
       }else if(typeof o.sources === "object" && o.sources.length > 1){
@@ -34,4 +39,17 @@ class HTML5Base extends Component {
   }
 }
 
-export default HTML5Base;
+const mapStateToProps = (state, ownProps) => {
+ console.log(state)
+  return {
+    context: state.generalReducer.context
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HTML5Base);
