@@ -13,23 +13,43 @@ class PreviewSlideContainer extends Component {
   renderPreviewImages() {
      const { slides } = this.props.config.context;
      return slides.map( (slide, idx) => {
-
         return (
           <div className={"carousel-item" + (idx==0? ' active': "")} key={idx}>
             <div className="thumbnail-container">
               <div className="slide-image" data-index={idx}>
                 <img src={slide.img} title={slide.title} alt={slide.alt}/>
               </div>
-              <div className="slide-number">{idx} / {slide.length}</div>
+              <div className="slide-number">{idx + 1} / {slides.length}</div>
             </div>
-            { this.renderClonedthumbnailContainer() }
+            { this.renderClonedthumbnailContainer(slides, idx + 1) }
           </div>
         );
      })
   }
 
-  renderClonedthumbnailContainer() {
-    const { numOfCarouselSlide } = this.props.config;
+  renderClonedthumbnailContainer(slides, idx) {
+    console.log(idx)
+    const { numOfCarouselSlide, context } = this.props.config;
+
+    if ( slides.length > numOfCarouselSlide ) {
+      var cloned = [];
+      for ( var i = 1, j = 1; i < numOfCarouselSlide; i++, j++ ) {
+        if(idx+j > slides.length) {
+          idx = 1;
+          j = 0;
+        }
+
+        cloned[i] = (
+           <div className="thumbnail-container js-chameleon" key={i}>
+              <div className="slide-image" data-index={i}>
+                 <img src={slides[idx+j-1].img} title={slides[idx-1].title} alt={slides[idx-1].alt}/>
+              </div>
+              <div className="slide-number">{idx+j} / {slides.length} </div>
+            </div>
+        );
+      }
+      return cloned;
+    }
   }
 
   render() {
