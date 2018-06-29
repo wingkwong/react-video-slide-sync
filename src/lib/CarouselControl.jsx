@@ -9,9 +9,8 @@ class CarouselControl extends Component {
   }
 
   render() {
-    const { children } = this.props;
     return (
-      <a className="carousel-control prev"></a><a className="carousel-control next"></a>
+      <div><a className="carousel-control prev"></a><a className="carousel-control next"></a></div>
     );
   }
 }
