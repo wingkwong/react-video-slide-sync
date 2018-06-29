@@ -1,1 +1,1 @@
-export const SET_CONTEXT = 'SET_CONTEXT';
+export const SET_CONFIG = 'SET_CONFIG';

@@ -12,7 +12,7 @@ class SlideContainer extends Component {
   }
 
   componentDidMount() {
-    const { context } = this.props;
+    const { context } = this.props.config;
     this.setState({
       src: context.slides[0].img,
       title: context.slides[0].title,
@@ -21,7 +21,6 @@ class SlideContainer extends Component {
   }
 
   render() {
-    const { context } = this.props;
     const { src, title, alt } = this.state; 
     return (
       <div className="slide-container">
@@ -33,7 +32,7 @@ class SlideContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    context: state.generalReducer.context
+    config: state.generalReducer.config
   };
 }
 

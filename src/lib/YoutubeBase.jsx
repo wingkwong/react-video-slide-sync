@@ -11,7 +11,7 @@ class YoutubeBase extends Component {
   }
 
   render() {
-     var o = this.props.context.youtubeSetup;
+     var o = this.props.config.context.youtubeSetup;
     return (
       <YouTube videoId={o.videoId}/>
     );
@@ -20,7 +20,7 @@ class YoutubeBase extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    context: state.generalReducer.context
+    config: state.generalReducer.config
   };
 }
 

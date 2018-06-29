@@ -14,13 +14,13 @@ class VideoSlideSync extends Component {
   }
 
   render() {
-    const { player, context } = this.props;
+    const { player, config } = this.props;
     const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);  
     const store = createStoreWithMiddleware(rootReducer);
 
     return (
       <Provider store={store}>
-        <Main player={player} context={context}/>
+        <Main player={player} config={config}/>
       </Provider>
     );
   }

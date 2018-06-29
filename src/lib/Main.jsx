@@ -8,34 +8,34 @@ import SlideContainer from './SlideContainer';
 import InfoPanelContainer from './InfoPanelContainer';
 import CarouselContainer from './CarouselContainer';
 import DownloadContainer from './DownloadContainer';
-import { setContext } from './actions';
+import { setConfig } from './actions';
 
 
 
 class Main extends Component {
   constructor(props) {
     super(props);
-    const { context } = this.props;
-    this.props.setContext(context);
-    
-    let o = Object.assign({}, this.defaultProps, props);
-    this.state = {
-      o
-    }
-  }
-
-  static propTypes = {
-    
-  }
-
-  static defaultProps = {
+    const { config } = this.props;
+    const defaultProps = {
         width: '968px',                    // width of chameleon container
         height: '300px',                   // height of chameleon container
         context: {},              // slides JSON file / object 
         numOfCarouselSlide: 5,             // number of slides showing in carousel
         responsive: false,              
         player: 'html5'
-  };
+    };
+
+    var o = {
+        width: config.width || defaultProps.width2,
+        height: config.height || defaultProps.height,
+        context: config.context || defaultProps.context,
+        numOfCarouselSlide: config.numOfCarouselSlide || defaultProps.numOfCarouselSlide,
+        responsive: config.responsive || defaultProps.responsive,
+        player: config.player || defaultProps.player
+    }
+
+    this.props.setConfig(o);
+  }
 
   componentDidMount() {
     // const { context } = this.props;
@@ -43,7 +43,7 @@ class Main extends Component {
   }
 
   render() {
-    const { player, context } = this.props;
+    const { player, config } = this.props;
 
     return (
         <div className="chameleon">
@@ -66,8 +66,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setContext: (context) =>
-      dispatch(setContext(context))
+    setConfig: (config) =>
+      dispatch(setConfig(config))
   }
 };
 

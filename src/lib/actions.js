@@ -1,16 +1,16 @@
 import {
-  SET_CONTEXT
+  SET_CONFIG
 } from './constants';
 
 
-function dispatchSetContext(context) {
-  return {type: SET_CONTEXT, context: context};
+function dispatchSetConfig(config) {
+  return {type: SET_CONFIG, config: config};
 }
 
 
 
-export function setContext(context) {
+export function setConfig(config) {
   return dispatch => {
-    dispatch(dispatchSetContext(context));
+    dispatch(dispatchSetConfig(config));
   };
 }

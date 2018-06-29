@@ -42,7 +42,7 @@ class HTML5Base extends Component {
 const mapStateToProps = (state, ownProps) => {
  console.log(state)
   return {
-    context: state.generalReducer.context
+    config: state.generalReducer.config
   };
 }
 

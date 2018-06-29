@@ -1,11 +1,11 @@
 import {
-	SET_CONTEXT
+	SET_CONFIG
 } from '../constants';
 
-function generalReducer(state={context: null}, action) {
+function generalReducer(state={config: null}, action) {
   switch (action.type) {
-    case SET_CONTEXT:
-      return {context: action.context};
+    case SET_CONFIG:
+      return {config: action.config};
     default:
       return state;
   }

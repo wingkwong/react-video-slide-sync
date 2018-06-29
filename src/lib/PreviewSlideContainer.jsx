@@ -11,24 +11,28 @@ class PreviewSlideContainer extends Component {
   }
 
   renderPreviewImages() {
-     const { slides } = this.props.context;
+     const { slides } = this.props.config.context;
      return slides.map( (slide, idx) => {
-      console.log(slide)
+
         return (
-          <div className="carousel-item" key={idx}>
+          <div className={"carousel-item" + (idx==0? ' active': "")} key={idx}>
             <div className="thumbnail-container">
               <div className="slide-image" data-index={idx}>
                 <img src={slide.img} title={slide.title} alt={slide.alt}/>
               </div>
               <div className="slide-number">{idx} / {slide.length}</div>
             </div>
+            { this.renderClonedthumbnailContainer() }
           </div>
         );
      })
   }
 
+  renderClonedthumbnailContainer() {
+    const { numOfCarouselSlide } = this.props.config;
+  }
+
   render() {
-    const { children } = this.props;
     return (
       <div className="preview-slide-container">
         { this.renderPreviewImages() }
@@ -41,7 +45,7 @@ class PreviewSlideContainer extends Component {
 const mapStateToProps = (state, ownProps) => {
  console.log(state)
   return {
-    context: state.generalReducer.context
+    config: state.generalReducer.config
   };
 }
 

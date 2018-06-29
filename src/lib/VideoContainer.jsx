@@ -18,7 +18,7 @@ class VideoContainer extends Component {
   }
 
   _initPlayer() {
-   	const { player } = this.props;
+   	const { player } = this.props.config;
 
    	switch(player){
         case 'jwplayer':
@@ -39,7 +39,7 @@ class VideoContainer extends Component {
    }
 
    _responsify() {
-      var { responsive } = this.props.context;
+      var { responsive } = this.props.config;
       if(responsive){
         //TODO
       }
@@ -47,9 +47,7 @@ class VideoContainer extends Component {
 
 
   renderBase() {
-  	const { player } = this.state;
-  	const { context } = this.props;
-    console.log(context);
+  	const { player } = this.props.config;
   	return (
   		<div>
   			{ player == 'jwplayer' && <JwplayerBase/> }
@@ -60,7 +58,6 @@ class VideoContainer extends Component {
   }
 
   render() {
-    const { children } = this.props;
     return (
       <div className="video-container">
       	{ this.renderBase() }
@@ -71,7 +68,7 @@ class VideoContainer extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    context: state.generalReducer.context
+    config: state.generalReducer.config
   };
 }
 
