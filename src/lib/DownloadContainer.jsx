@@ -11,7 +11,7 @@ class DownloadContainer extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="">
+      <div className="download-container">
         DownloadContainer
       </div>
     );
