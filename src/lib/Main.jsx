@@ -46,7 +46,7 @@ class Main extends Component {
     const { player, config } = this.props;
 
     return (
-        <div className="chameleon">
+        <div className={"chameleon " + (config.responsive || false? 'responsive': 'non-responsive')}>
           <VideoContainer player={player}/>
           <SlideContainer/>
           <InfoPanelContainer/>

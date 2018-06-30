@@ -229,3 +229,44 @@
 	color: #FFFF33;
 	font-weight: bold;
 }
+
+
+.non-responsive .video-container {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+.non-responsive .slide-container {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+.non-responsive .download-container {
+	width: 100%;
+	height: 40px;
+	float: left;
+	line-height: 40px;
+}
+
+.non-responsive .download-btn {
+	width: 30%;
+}
+
+.non-responsive .info-panel .slide-number, 
+.non-responsive .info-panel .slide-time {
+	width: 8.33333333%;
+	float: left;
+	text-align: center;
+}
+
+.non-responsive .info-panel .slide-title-wrapper {
+	width: 83.33333333%;
+    float: left;
+	text-align: center;
+}
+
+.non-responsive .info-panel .slide-title {
+	padding-left: 30px;
+}
