@@ -17,6 +17,7 @@ class DownloadContainer extends Component {
          return (
           <a href={context.download.slides.url} className="download-btn download-slides" target="_blank" download 
             title={typeof context.download.slides.title != "undefined" && typeof context.download.slides.title === 'string'? context.download.slides.title: ''}>
+              <span className="download-icon"></span>
               Download slides
           </a>
          )
@@ -33,6 +34,7 @@ class DownloadContainer extends Component {
          return (
           <a href={context.download.video.url} className="download-btn download-video" target="_blank" download 
             title={typeof context.download.video.title != "undefined" && typeof context.download.video.title === 'string'? context.download.video.title: ''}>
+              <span className="download-icon"></span>
               Download Video
           </a>
          )
@@ -49,6 +51,7 @@ class DownloadContainer extends Component {
          return (
           <a href={context.download.transcript.url} className="download-btn download-transcript" target="_blank" download 
             title={typeof context.download.transcript.title != "undefined" && typeof context.download.transcript.title === 'string'? context.download.transcript.title: ''}>
+              <span className="download-icon"></span>
               Download Transcript
           </a>
          )
