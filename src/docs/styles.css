@@ -186,7 +186,7 @@
 }
 
 .info-panel .dropdown-content{
-	display: none;
+/*	display: none;*/
 	padding: 10px 20px;
 	max-height: 300px;
 	overflow-y: scroll;
