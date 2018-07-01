@@ -37,7 +37,7 @@ class InfoPanelContainer extends Component {
       <div className="info-panel">
       	<div className="dropdown-box">
           <div className="dropdown-header">
-            <div className="dropdown-btn-wrapper" onClick={this.handleClick}>Markers <span className="dropdown-btn down"></span></div>
+            <div className="dropdown-btn-wrapper" onClick={this.handleClick}>Markers <span className={"dropdown-btn " + (this.state.visible ? 'up': 'down')}></span></div>
           </div>
           { this.state.visible ? 
             <div className="dropdown-content">
