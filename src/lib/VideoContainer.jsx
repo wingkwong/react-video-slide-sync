@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import JwplayerBase from "./JwplayerBase";
 import HTML5Base from "./HTML5Base";
 import YoutubeBase from "./YoutubeBase";
+import {slideCarouselHandler} from "./Utils";
 
 class VideoContainer extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class VideoContainer extends Component {
 
   componentDidMount() {
   	this._initPlayer();
-    this._responsify();
   }
 
   _initPlayer() {
@@ -23,14 +23,17 @@ class VideoContainer extends Component {
    	switch(player){
         case 'jwplayer':
            	this.setState({ player: 'jwplayer' });
+            this._initJWPlayer();
             break;
 
         case 'html5':
             this.setState({ player: 'html5' });
+            this._initHTML5Player();
             break;
 
         case 'youtube': 
             this.setState({ player: 'youtube' });
+            this._initYoutubePlayer();
             break;
 
         default: 
@@ -38,13 +41,22 @@ class VideoContainer extends Component {
     }
    }
 
-   _responsify() {
-      var { responsive } = this.props.config;
-      if(responsive){
-        //TODO
-      }
+   _initJWPlayer(){
+    const { context } = this.props.config;
    }
 
+   _initHTML5Player(){
+    const { config } = this.props;
+    var video = document.querySelector('.chameleon-html5-video');
+    video.ontimeupdate = function() {
+      var time = this.get(0).currentTime;
+      slideCarouselHandler(config.context.slides,config.numOfCarouselSlide, time);
+    }
+   }
+
+   _initYoutubePlayer(){
+    const { context } = this.props.config;
+   }
 
   renderBase() {
   	const { player } = this.props.config;
