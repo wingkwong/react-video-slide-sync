@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import { seek, parseStrTime } from "./Utils";
 
 
 class PreviewSlideContainer extends Component {
@@ -33,7 +34,24 @@ class PreviewSlideContainer extends Component {
       }
     }
 
+    this._registerClickEvents();
   }
+
+   _registerClickEvents() {
+      const { config } = this.props;
+      console.log(config)
+      var slideImages = document.querySelectorAll('.slide-image');
+
+      Array.from(slideImages).forEach(image => {
+          image.addEventListener('click', function(e) {
+             e.preventDefault();
+             var idx = this.getAttribute("data-index");
+             //TODO:
+             seek(parseStrTime(config.player, config.context.slides[idx-1].time))
+          });
+      });
+
+    }
 
   _updateSlideCarouel(idx) {
     var idx = parseInt(idx) +1 ;
@@ -47,7 +65,7 @@ class PreviewSlideContainer extends Component {
         return (
           <div className={"carousel-item" + (idx==0? ' active': "")} key={idx}>
             <div className="thumbnail-container">
-              <div className="slide-image" data-index={idx}>
+              <div className="slide-image" data-index={idx+1}>
                 <img src={slide.img} title={slide.title} alt={slide.alt}/>
               </div>
               <div className="slide-number">{idx + 1} / {slides.length}</div>
