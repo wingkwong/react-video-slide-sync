@@ -31,8 +31,9 @@ class HTML5Base extends Component {
   }
 
   render() {
+    var o = this.props.context.html5Setup;
     return (
-     <video id="chameleon-html5-video" className="chameleon-html5-video" controls preload="auto" width="100%" height="100%">
+     <video id="chameleon-html5-video" className="chameleon-html5-video" controls preload="auto" width="100%" height="100%" poster={o.poster != null && o.poster != ''? o.poster: ''}>
         { this.renderSource() }
      </video>
     );
